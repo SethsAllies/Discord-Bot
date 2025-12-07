@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A powerful all-in-one Discord bot with moderation, music, leveling, economy, and more!">
+    <title>Discord Bot - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <i class="fas fa-robot"></i>
+                <span>DiscordBot</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/commands" class="nav-link">Commands</a>
+                <a href="/features" class="nav-link">Features</a>
+                <a href="/status" class="nav-link">Status</a>
+                <% if (typeof user !== 'undefined' && user) { %>
+                    <a href="/dashboard" class="nav-link">Dashboard</a>
+                    <div class="user-menu">
+                        <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" alt="Avatar" class="user-avatar">
+                        <span><%= user.username %></span>
+                        <div class="dropdown">
+                            <a href="/dashboard">Dashboard</a>
+                            <a href="/logout">Logout</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <a href="/auth/discord" class="btn btn-primary">Login with Discord</a>
+                <% } %>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>

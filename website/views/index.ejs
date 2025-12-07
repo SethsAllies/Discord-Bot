@@ -1,0 +1,147 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">
+                The Ultimate <span class="gradient-text">Discord Bot</span>
+            </h1>
+            <p class="hero-subtitle animate-fade-in-delay">
+                Over 400+ commands. Moderation, Music, Leveling, Economy, Giveaways, Tickets, and much more.
+                Everything you need to power your Discord server.
+            </p>
+            <div class="hero-buttons animate-fade-in-delay-2">
+                <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&scope=bot%20applications.commands&permissions=8" class="btn btn-primary btn-lg pulse">
+                    <i class="fas fa-plus"></i> Add to Discord
+                </a>
+                <a href="/dashboard" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </div>
+            <div class="hero-stats animate-fade-in-delay-3">
+                <div class="stat-card">
+                    <span class="stat-number" data-count="1000">0</span>+
+                    <span class="stat-label">Servers</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-count="100000">0</span>+
+                    <span class="stat-label">Users</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-count="400">0</span>+
+                    <span class="stat-label">Commands</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Powerful <span class="gradient-text">Features</span></h2>
+            <p class="section-subtitle">Everything your server needs in one bot</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Moderation</h3>
+                <p>Ban, kick, mute, warn, purge, and more. Keep your server safe with powerful moderation tools.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3>Music</h3>
+                <p>High-quality music from YouTube, Spotify, SoundCloud, and more. Playlists, queues, and DJ controls.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Leveling</h3>
+                <p>Engage your community with XP, levels, and role rewards. Customizable level-up messages.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h3>Economy</h3>
+                <p>Virtual currency system with jobs, gambling, shops, and more. Let your members earn and spend!</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3>Giveaways</h3>
+                <p>Create and manage giveaways with ease. Multiple winners, requirements, and rerolls supported.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="feature-icon">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <h3>Tickets</h3>
+                <p>Professional ticket system with categories, claiming, transcripts, and more.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="feature-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Modmail</h3>
+                <p>Separate modmail bot for user support via DMs. Professional ticket management.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="700">
+                <div class="feature-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Games & Fun</h3>
+                <p>Trivia, 8ball, RPS, snake, and many more interactive games for your community.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="status-preview">
+        <div class="section-header">
+            <h2 class="section-title">Real-time <span class="gradient-text">Status</span></h2>
+            <p class="section-subtitle">Monitor our bots 24/7</p>
+        </div>
+        <div class="status-cards" id="status-cards">
+            <div class="status-card">
+                <div class="status-indicator online"></div>
+                <div class="status-info">
+                    <h4>Main Bot</h4>
+                    <span class="status-text">Loading...</span>
+                </div>
+                <div class="status-ping">-- ms</div>
+            </div>
+            <div class="status-card">
+                <div class="status-indicator online"></div>
+                <div class="status-info">
+                    <h4>Modmail Bot</h4>
+                    <span class="status-text">Loading...</span>
+                </div>
+                <div class="status-ping">-- ms</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to level up your server?</h2>
+            <p>Join thousands of servers already using our bot</p>
+            <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&scope=bot%20applications.commands&permissions=8" class="btn btn-primary btn-lg">
+                <i class="fas fa-rocket"></i> Get Started Now
+            </a>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>

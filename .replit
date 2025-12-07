@@ -1,5 +1,6 @@
 hidden = [".config"]
 run = "npm run start"
+modules = ["nodejs-20"]
 
 [[hints]]
 regex = "Error \\[ERR_REQUIRE_ESM\\]"
@@ -74,3 +75,6 @@ pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
 
 [languages.javascript.languageServer]
 start = "typescript-language-server --stdio"
+
+[agent]
+expertMode = true
