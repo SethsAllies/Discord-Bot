@@ -1,0 +1,247 @@
+<%- include('partials/header') %>
+
+<main class="main-content status-page">
+    <section class="page-header">
+        <h1>Bot <span class="gradient-text">Status</span></h1>
+        <p>Real-time monitoring of our services</p>
+    </section>
+
+    <section class="status-overview">
+        <div class="overall-status" id="overall-status">
+            <div class="status-pulse"></div>
+            <span>Loading status...</span>
+        </div>
+    </section>
+
+    <section class="services-status">
+        <h2>Services</h2>
+        <div class="services-grid" id="services-grid">
+            <div class="service-card" data-service="main-bot">
+                <div class="service-header">
+                    <div class="service-indicator loading"></div>
+                    <h3>Main Bot</h3>
+                </div>
+                <div class="service-details">
+                    <div class="service-stat">
+                        <span class="label">Status</span>
+                        <span class="value" id="main-status">Loading...</span>
+                    </div>
+                    <div class="service-stat">
+                        <span class="label">Latency</span>
+                        <span class="value" id="main-latency">-- ms</span>
+                    </div>
+                    <div class="service-stat">
+                        <span class="label">Servers</span>
+                        <span class="value" id="main-servers">--</span>
+                    </div>
+                    <div class="service-stat">
+                        <span class="label">Users</span>
+                        <span class="value" id="main-users">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="modmail-bot">
+                <div class="service-header">
+                    <div class="service-indicator loading"></div>
+                    <h3>Modmail Bot</h3>
+                </div>
+                <div class="service-details">
+                    <div class="service-stat">
+                        <span class="label">Status</span>
+                        <span class="value" id="modmail-status">Loading...</span>
+                    </div>
+                    <div class="service-stat">
+                        <span class="label">Latency</span>
+                        <span class="value" id="modmail-latency">-- ms</span>
+                    </div>
+                    <div class="service-stat">
+                        <span class="label">Servers</span>
+                        <span class="value" id="modmail-servers">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="website">
+                <div class="service-header">
+                    <div class="service-indicator online"></div>
+                    <h3>Website</h3>
+                </div>
+                <div class="service-details">
+                    <div class="service-stat">
+                        <span class="label">Status</span>
+                        <span class="value">Online</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card" data-service="database">
+                <div class="service-header">
+                    <div class="service-indicator online"></div>
+                    <h3>Database</h3>
+                </div>
+                <div class="service-details">
+                    <div class="service-stat">
+                        <span class="label">Status</span>
+                        <span class="value">Online</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="uptime-section" id="uptime-section">
+        <h2><i class="fas fa-clock"></i> UptimeRobot Monitors</h2>
+        <div class="uptime-grid" id="uptime-grid">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading uptime data...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="status-history">
+        <h2><i class="fas fa-history"></i> Recent Activity</h2>
+        <div class="history-timeline" id="history-timeline">
+            <div class="timeline-item success">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>All Systems Operational</h4>
+                    <span class="timeline-time">Now</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+async function loadStatus() {
+    try {
+        const response = await fetch('/api/status');
+        const data = await response.json();
+
+        updateOverallStatus(data);
+        updateMainBot(data.mainBot);
+        updateModmailBot(data.modmailBot);
+        updateUptimeRobot(data.uptime);
+    } catch (error) {
+        console.error('Error loading status:', error);
+        document.getElementById('overall-status').innerHTML = `
+            <div class="status-pulse error"></div>
+            <span>Unable to fetch status</span>
+        `;
+    }
+}
+
+function updateOverallStatus(data) {
+    const allOnline = data.mainBot?.status === 'online' && data.modmailBot?.status === 'online';
+    const statusEl = document.getElementById('overall-status');
+    
+    if (allOnline) {
+        statusEl.innerHTML = `
+            <div class="status-pulse online"></div>
+            <span>All Systems Operational</span>
+        `;
+        statusEl.className = 'overall-status online';
+    } else {
+        statusEl.innerHTML = `
+            <div class="status-pulse warning"></div>
+            <span>Some services may be experiencing issues</span>
+        `;
+        statusEl.className = 'overall-status warning';
+    }
+}
+
+function updateMainBot(bot) {
+    if (!bot) return;
+    
+    const card = document.querySelector('[data-service="main-bot"]');
+    const indicator = card.querySelector('.service-indicator');
+    
+    indicator.className = 'service-indicator ' + (bot.status === 'online' ? 'online' : 'offline');
+    document.getElementById('main-status').textContent = bot.status || 'Unknown';
+    document.getElementById('main-latency').textContent = (bot.latency || '--') + ' ms';
+    document.getElementById('main-servers').textContent = bot.guilds_count || '--';
+    document.getElementById('main-users').textContent = bot.users_count?.toLocaleString() || '--';
+}
+
+function updateModmailBot(bot) {
+    if (!bot) return;
+    
+    const card = document.querySelector('[data-service="modmail-bot"]');
+    const indicator = card.querySelector('.service-indicator');
+    
+    indicator.className = 'service-indicator ' + (bot.status === 'online' ? 'online' : 'offline');
+    document.getElementById('modmail-status').textContent = bot.status || 'Unknown';
+    document.getElementById('modmail-latency').textContent = (bot.latency || '--') + ' ms';
+    document.getElementById('modmail-servers').textContent = bot.guilds_count || '--';
+}
+
+function updateUptimeRobot(uptime) {
+    const grid = document.getElementById('uptime-grid');
+    
+    if (!uptime || !uptime.available) {
+        grid.innerHTML = `
+            <div class="uptime-notice">
+                <i class="fas fa-info-circle"></i>
+                <p>UptimeRobot integration not configured. Add your UPTIMEROBOT_API_KEY to enable monitoring.</p>
+            </div>
+        `;
+        return;
+    }
+
+    if (!uptime.monitors || uptime.monitors.length === 0) {
+        grid.innerHTML = `
+            <div class="uptime-notice">
+                <i class="fas fa-info-circle"></i>
+                <p>No monitors found in your UptimeRobot account.</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = uptime.monitors.map(monitor => `
+        <div class="uptime-card ${getStatusClass(monitor.status)}">
+            <div class="uptime-header">
+                <div class="uptime-indicator ${getStatusClass(monitor.status)}"></div>
+                <h4>${monitor.name}</h4>
+            </div>
+            <div class="uptime-details">
+                <div class="uptime-stat">
+                    <span class="label">Uptime</span>
+                    <span class="value">${monitor.uptime || '--'}%</span>
+                </div>
+                <div class="uptime-stat">
+                    <span class="label">Status</span>
+                    <span class="value">${getStatusText(monitor.status)}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function getStatusClass(status) {
+    switch(status) {
+        case 2: return 'online';
+        case 8: return 'warning';
+        case 9: return 'offline';
+        default: return 'unknown';
+    }
+}
+
+function getStatusText(status) {
+    switch(status) {
+        case 0: return 'Paused';
+        case 1: return 'Not checked';
+        case 2: return 'Up';
+        case 8: return 'Seems down';
+        case 9: return 'Down';
+        default: return 'Unknown';
+    }
+}
+
+loadStatus();
+setInterval(loadStatus, 30000);
+</script>
+
+<%- include('partials/footer') %>

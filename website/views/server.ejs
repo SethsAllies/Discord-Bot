@@ -1,0 +1,200 @@
+<%- include('partials/header') %>
+
+<main class="main-content server-page">
+    <div class="dashboard-container">
+        <div class="dashboard-sidebar">
+            <div class="sidebar-server">
+                <% if (guild.icon) { %>
+                    <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png" alt="<%= guild.name %>">
+                <% } else { %>
+                    <div class="server-icon-placeholder lg">
+                        <%= guild.name.charAt(0) %>
+                    </div>
+                <% } %>
+                <div class="sidebar-server-info">
+                    <h3><%= guild.name %></h3>
+                    <span>Server Settings</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#general" class="sidebar-link active">
+                    <i class="fas fa-cog"></i>
+                    <span>General</span>
+                </a>
+                <a href="#welcome" class="sidebar-link">
+                    <i class="fas fa-door-open"></i>
+                    <span>Welcome</span>
+                </a>
+                <a href="#moderation" class="sidebar-link">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Moderation</span>
+                </a>
+                <a href="#leveling" class="sidebar-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Leveling</span>
+                </a>
+                <a href="#modmail" class="sidebar-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Modmail</span>
+                </a>
+                <a href="/dashboard" class="sidebar-link back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Servers</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="settings-section" id="general">
+                <h2><i class="fas fa-cog"></i> General Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <label for="prefix">Command Prefix</label>
+                        <input type="text" id="prefix" name="prefix" value="<%= settings?.prefix || '!' %>" class="input-field" maxlength="5">
+                        <span class="setting-hint">Prefix for legacy commands (slash commands don't need a prefix)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section" id="welcome">
+                <h2><i class="fas fa-door-open"></i> Welcome Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <label for="welcome_channel">Welcome Channel ID</label>
+                        <input type="text" id="welcome_channel" name="welcome_channel_id" value="<%= settings?.welcome_channel_id || '' %>" class="input-field">
+                    </div>
+                    <div class="setting-item">
+                        <label for="welcome_message">Welcome Message</label>
+                        <textarea id="welcome_message" name="welcome_message" class="input-field textarea" rows="3"><%= settings?.welcome_message || 'Welcome {user} to {server}!' %></textarea>
+                        <span class="setting-hint">Use {user}, {server}, {membercount} as placeholders</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="leave_channel">Leave Channel ID</label>
+                        <input type="text" id="leave_channel" name="leave_channel_id" value="<%= settings?.leave_channel_id || '' %>" class="input-field">
+                    </div>
+                    <div class="setting-item">
+                        <label for="leave_message">Leave Message</label>
+                        <textarea id="leave_message" name="leave_message" class="input-field textarea" rows="3"><%= settings?.leave_message || '{user} has left the server.' %></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section" id="moderation">
+                <h2><i class="fas fa-shield-alt"></i> Moderation Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item toggle-item">
+                        <div class="toggle-info">
+                            <label>Auto-Moderation</label>
+                            <span class="setting-hint">Enable automatic moderation features</span>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" name="automod_enabled" <%= settings?.automod_enabled ? 'checked' : '' %>>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label for="log_channel">Log Channel ID</label>
+                        <input type="text" id="log_channel" name="log_channel_id" value="<%= settings?.log_channel_id || '' %>" class="input-field">
+                        <span class="setting-hint">Channel for moderation logs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section" id="leveling">
+                <h2><i class="fas fa-chart-line"></i> Leveling Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item toggle-item">
+                        <div class="toggle-info">
+                            <label>Enable Leveling</label>
+                            <span class="setting-hint">Allow members to earn XP and level up</span>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" name="leveling_enabled" <%= settings?.leveling_enabled !== false ? 'checked' : '' %>>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section" id="modmail">
+                <h2><i class="fas fa-envelope"></i> Modmail Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item toggle-item">
+                        <div class="toggle-info">
+                            <label>Enable Modmail</label>
+                            <span class="setting-hint">Allow users to contact staff via DM</span>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" name="modmail_enabled" <%= settings?.modmail_enabled ? 'checked' : '' %>>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label for="modmail_category">Modmail Category ID</label>
+                        <input type="text" id="modmail_category" name="modmail_category_id" value="<%= settings?.modmail_category_id || '' %>" class="input-field">
+                        <span class="setting-hint">Category where modmail tickets will be created</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn btn-primary btn-lg" id="save-settings">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+                <button class="btn btn-secondary" id="reset-settings">
+                    <i class="fas fa-undo"></i> Reset
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+const guildId = '<%= guild.id %>';
+
+document.getElementById('save-settings').addEventListener('click', async () => {
+    const settings = {
+        prefix: document.getElementById('prefix').value,
+        welcome_channel_id: document.getElementById('welcome_channel').value || null,
+        welcome_message: document.getElementById('welcome_message').value,
+        leave_channel_id: document.getElementById('leave_channel').value || null,
+        leave_message: document.getElementById('leave_message').value,
+        log_channel_id: document.getElementById('log_channel').value || null,
+        automod_enabled: document.querySelector('input[name="automod_enabled"]').checked,
+        leveling_enabled: document.querySelector('input[name="leveling_enabled"]').checked,
+        modmail_enabled: document.querySelector('input[name="modmail_enabled"]').checked,
+        modmail_category_id: document.getElementById('modmail_category').value || null
+    };
+
+    try {
+        const response = await fetch(`/api/guild/${guildId}/settings`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(settings)
+        });
+
+        if (response.ok) {
+            showNotification('Settings saved successfully!', 'success');
+        } else {
+            showNotification('Failed to save settings', 'error');
+        }
+    } catch (error) {
+        showNotification('Error saving settings', 'error');
+    }
+});
+
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => notification.classList.add('show'), 100);
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+</script>
+
+<%- include('partials/footer') %>

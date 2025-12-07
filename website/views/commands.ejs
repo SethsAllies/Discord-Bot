@@ -1,0 +1,345 @@
+<%- include('partials/header') %>
+
+<main class="main-content commands-page">
+    <section class="page-header">
+        <h1>Bot <span class="gradient-text">Commands</span></h1>
+        <p>Over 400+ commands to power your Discord server</p>
+    </section>
+
+    <div class="commands-container">
+        <div class="commands-sidebar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="command-search" placeholder="Search commands...">
+            </div>
+            <nav class="category-nav">
+                <a href="#moderation" class="category-link active" data-category="moderation">
+                    <i class="fas fa-shield-alt"></i> Moderation
+                </a>
+                <a href="#music" class="category-link" data-category="music">
+                    <i class="fas fa-music"></i> Music
+                </a>
+                <a href="#economy" class="category-link" data-category="economy">
+                    <i class="fas fa-coins"></i> Economy
+                </a>
+                <a href="#leveling" class="category-link" data-category="leveling">
+                    <i class="fas fa-chart-line"></i> Leveling
+                </a>
+                <a href="#fun" class="category-link" data-category="fun">
+                    <i class="fas fa-smile"></i> Fun
+                </a>
+                <a href="#games" class="category-link" data-category="games">
+                    <i class="fas fa-gamepad"></i> Games
+                </a>
+                <a href="#utility" class="category-link" data-category="utility">
+                    <i class="fas fa-tools"></i> Utility
+                </a>
+                <a href="#giveaways" class="category-link" data-category="giveaways">
+                    <i class="fas fa-gift"></i> Giveaways
+                </a>
+                <a href="#tickets" class="category-link" data-category="tickets">
+                    <i class="fas fa-ticket-alt"></i> Tickets
+                </a>
+                <a href="#images" class="category-link" data-category="images">
+                    <i class="fas fa-image"></i> Images
+                </a>
+            </nav>
+        </div>
+
+        <div class="commands-content">
+            <div class="category-section" id="moderation">
+                <h2><i class="fas fa-shield-alt"></i> Moderation Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/ban</h3>
+                        <p>Ban a member from the server</p>
+                        <code>/ban @user [reason]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/kick</h3>
+                        <p>Kick a member from the server</p>
+                        <code>/kick @user [reason]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/timeout</h3>
+                        <p>Timeout a member</p>
+                        <code>/timeout @user [duration] [reason]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/warn</h3>
+                        <p>Warn a member</p>
+                        <code>/warn @user [reason]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/clear</h3>
+                        <p>Delete multiple messages</p>
+                        <code>/clear [amount]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/lock</h3>
+                        <p>Lock a channel</p>
+                        <code>/lock [channel]</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="music">
+                <h2><i class="fas fa-music"></i> Music Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/play</h3>
+                        <p>Play a song or playlist</p>
+                        <code>/play [song name or URL]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/skip</h3>
+                        <p>Skip the current song</p>
+                        <code>/skip</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/queue</h3>
+                        <p>View the music queue</p>
+                        <code>/queue</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/pause</h3>
+                        <p>Pause the current song</p>
+                        <code>/pause</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/volume</h3>
+                        <p>Adjust the volume</p>
+                        <code>/volume [1-100]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/lyrics</h3>
+                        <p>Get lyrics for the current song</p>
+                        <code>/lyrics</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="economy">
+                <h2><i class="fas fa-coins"></i> Economy Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/balance</h3>
+                        <p>Check your balance</p>
+                        <code>/balance</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/daily</h3>
+                        <p>Claim daily rewards</p>
+                        <code>/daily</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/work</h3>
+                        <p>Work to earn money</p>
+                        <code>/work</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/slots</h3>
+                        <p>Play the slot machine</p>
+                        <code>/slots [bet]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/leaderboard</h3>
+                        <p>View the richest users</p>
+                        <code>/leaderboard</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/shop</h3>
+                        <p>View the shop</p>
+                        <code>/shop</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="leveling">
+                <h2><i class="fas fa-chart-line"></i> Leveling Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/rank</h3>
+                        <p>View your rank card</p>
+                        <code>/rank [@user]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/leaderboard levels</h3>
+                        <p>View top users by level</p>
+                        <code>/leaderboard levels</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/rewards</h3>
+                        <p>View level rewards</p>
+                        <code>/rewards</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="fun">
+                <h2><i class="fas fa-smile"></i> Fun Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/meme</h3>
+                        <p>Get a random meme</p>
+                        <code>/meme</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/joke</h3>
+                        <p>Get a random joke</p>
+                        <code>/joke</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/roast</h3>
+                        <p>Roast someone</p>
+                        <code>/roast @user</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/hug</h3>
+                        <p>Hug someone</p>
+                        <code>/hug @user</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="games">
+                <h2><i class="fas fa-gamepad"></i> Game Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/trivia</h3>
+                        <p>Play trivia</p>
+                        <code>/trivia</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/8ball</h3>
+                        <p>Ask the magic 8-ball</p>
+                        <code>/8ball [question]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/rps</h3>
+                        <p>Rock Paper Scissors</p>
+                        <code>/rps [choice]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/snake</h3>
+                        <p>Play snake game</p>
+                        <code>/snake</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="utility">
+                <h2><i class="fas fa-tools"></i> Utility Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/userinfo</h3>
+                        <p>Get user information</p>
+                        <code>/userinfo [@user]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/serverinfo</h3>
+                        <p>Get server information</p>
+                        <code>/serverinfo</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/avatar</h3>
+                        <p>Get user's avatar</p>
+                        <code>/avatar [@user]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/remind</h3>
+                        <p>Set a reminder</p>
+                        <code>/remind [time] [message]</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="giveaways">
+                <h2><i class="fas fa-gift"></i> Giveaway Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/giveaway start</h3>
+                        <p>Start a giveaway</p>
+                        <code>/giveaway start [prize] [duration] [winners]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/giveaway end</h3>
+                        <p>End a giveaway early</p>
+                        <code>/giveaway end [message_id]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/giveaway reroll</h3>
+                        <p>Reroll giveaway winners</p>
+                        <code>/giveaway reroll [message_id]</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="tickets">
+                <h2><i class="fas fa-ticket-alt"></i> Ticket Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/ticket create</h3>
+                        <p>Create a support ticket</p>
+                        <code>/ticket create [reason]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/ticket close</h3>
+                        <p>Close the current ticket</p>
+                        <code>/ticket close</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/ticket add</h3>
+                        <p>Add user to ticket</p>
+                        <code>/ticket add @user</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-section" id="images">
+                <h2><i class="fas fa-image"></i> Image Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>/cat</h3>
+                        <p>Get a random cat image</p>
+                        <code>/cat</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/dog</h3>
+                        <p>Get a random dog image</p>
+                        <code>/dog</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/triggered</h3>
+                        <p>Create triggered image</p>
+                        <code>/triggered [@user]</code>
+                    </div>
+                    <div class="command-card">
+                        <h3>/wanted</h3>
+                        <p>Create wanted poster</p>
+                        <code>/wanted [@user]</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+document.getElementById('command-search').addEventListener('input', function(e) {
+    const search = e.target.value.toLowerCase();
+    document.querySelectorAll('.command-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(search) ? 'block' : 'none';
+    });
+});
+
+document.querySelectorAll('.category-link').forEach(link => {
+    link.addEventListener('click', function() {
+        document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+</script>
+
+<%- include('partials/footer') %>
